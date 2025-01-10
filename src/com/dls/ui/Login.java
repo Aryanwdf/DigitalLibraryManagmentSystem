@@ -167,8 +167,8 @@ public class Login extends JFrame implements ActionListener {
         this.studentController = studentController;
         this.facultyController = facultyController;
     }
-// Hauptlogik des Anmeldebildschirms
-    // Methode, die auf Benutzeraktionen reagiert.
+// Hauptlogik der Aktionen bei dem Anmeldebildschirms
+    
     @Override
     public void actionPerformed(ActionEvent ae) {
         Object o = ae.getSource(); // Bestimmt die Quelle des Events.
