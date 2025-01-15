@@ -104,53 +104,79 @@ public class PersonMaintenance extends JFrame implements ActionListener, Documen
 		});
 // Till Here
 
+		// Erstellen einer CheckboxGroup für die Auswahl zwischen Student und Faculty
 		this.personCheckBoxGroup = new CheckboxGroup();
+
+		// Erstellen der Checkbox für "Student" und "Faculty" und Zuweisen der CheckboxGroup
 		this.studentCheckBox = new Checkbox("Student", personCheckBoxGroup, true);
 		this.facultyCheckBox = new Checkbox("Faculty", personCheckBoxGroup, false);
+
+		// Festlegen der Schriftart für die Checkboxen
 		studentCheckBox.setFont(new Font("Times New Roman", Font.BOLD, 20));
 		facultyCheckBox.setFont(new Font("Times New Roman", Font.BOLD, 20));
+
+		// Festlegen der Position und Größe der Checkboxen
 		studentCheckBox.setBounds(333, 124, 200, 35);
 		facultyCheckBox.setBounds(558, 124, 200, 35);
+
+		// Festlegen des Layout-Managers auf null (keine automatische Layoutanpassung)
 		getContentPane().setLayout(null);
+
+		// Hinzufügen der Checkboxen zum ContentPane
 		getContentPane().add(studentCheckBox);
 		getContentPane().add(facultyCheckBox);
 
+		// Erstellen und Hinzufügen eines Labels für den Titel
 		JLabel lblDigitalLibraryManagement = new JLabel("Digital Library Management System - Person Management\r\n");
 		lblDigitalLibraryManagement.setFont(new Font("Times New Roman", Font.BOLD, 26));
 		lblDigitalLibraryManagement.setBounds(157, 11, 687, 30);
 		getContentPane().add(lblDigitalLibraryManagement);
 
+		// Festlegen der Schließbedingung für das Fenster
 		this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-		getContentPane().setLayout(null);
+
+		// Erstellen einer ContentPane-Referenz und Festlegen der Hintergrundfarbe
 		c = this.getContentPane();
 		c.setBackground(
-				new Color(GlobalResources.COLOR_CODE_R, GlobalResources.COLOR_CODE_G, GlobalResources.COLOR_CODE_B));
+		    new Color(GlobalResources.COLOR_CODE_R, GlobalResources.COLOR_CODE_G, GlobalResources.COLOR_CODE_B));
+
+		// Erstellen eines Labels für die "Search Student"-Funktion
 		search = new JLabel("Search Student:");
 		search.setIcon(new ImageIcon(BookMaintenance.class.getResource("/resources/find_icon.png")));
 		search.setFont(new Font("Times New Roman", Font.BOLD, 20));
 
+		// Erstellen eines Labels für die Gesamtzahl und ein Textfeld für die Suche
 		totalCount = new JLabel("");
 		totalCount.setFont(new Font("Times New Roman", Font.BOLD, 20));
 		list = new JLabel(recordCount);
 		list.setFont(new Font("Times New Roman", Font.BOLD, 20));
 		searchBox = new JTextField("");
 
+		// Erstellen eines "Add"-Buttons
 		addPerson = new JButton("  Add");
 		addPerson.setIcon(new ImageIcon(BookMaintenance.class.getResource("/resources/add_icon.png")));
 		addPerson.setFont(new Font("Times New Roman", Font.BOLD, 14));
+
+		// Erstellen eines Fehler-Labels und eines Fehler-Icons
 		error = new JLabel("");
 		errorIcon = new JLabel(new ImageIcon(getClass().getResource(GlobalResources.ERROR_ICON)));
 
+		// Erstellen eines "Delete"-Buttons
 		deletePerson = new JButton("  Delete");
 		deletePerson.setIcon(new ImageIcon(BookMaintenance.class.getResource("/resources/trash_icon.png")));
 		deletePerson.setFont(new Font("Times New Roman", Font.BOLD, 14));
 
+		// Erstellen eines "Update"-Buttons
 		updatePerson = new JButton(" Update");
 		updatePerson.setIcon(new ImageIcon(BookMaintenance.class.getResource("/resources/edit_icon.png")));
 		updatePerson.setFont(new Font("Times New Roman", Font.BOLD, 14));
+
+		// Erstellen der Tabelle für die Anzeige der Studenten
 		studentTableView = new StudentTableView(studentController);
 		personTable = new JTable(studentTableView);
 		personTable.setBackground(Color.white);
+
+		// Festlegen der Spaltenbreiten und Spaltenüberschriften
 		this.personTable.getColumnModel().getColumn(0).setPreferredWidth(80);
 		this.personTable.getColumnModel().getColumn(0).setHeaderValue(studentTableView.getColumnName(0));
 		this.personTable.getColumnModel().getColumn(1).setHeaderValue(studentTableView.getColumnName(1));
@@ -159,14 +185,22 @@ public class PersonMaintenance extends JFrame implements ActionListener, Documen
 		this.personTable.getColumnModel().getColumn(1).setPreferredWidth(400);
 		this.personTable.getColumnModel().getColumn(2).setPreferredWidth(300);
 		this.personTable.getColumnModel().getColumn(3).setPreferredWidth(200);
+
+		// Festlegen der Schriftart und Auswahlmodus der Tabelle
 		this.personTable.setFont(new Font("Times New Roman", Font.PLAIN, 16));
 		this.personTable.getSelectionModel().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		this.personTable.getTableHeader().setFont(new Font("Times New Roman", Font.BOLD, 16));
+
+		// Festlegen der Zeilenhöhe und Scrollpane für die Tabelle
 		this.setAreaTypeTableRowHeight();
 		this.scrollPane = new JScrollPane(personTable, ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS,
-				ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
+		    ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
+
+		// Festlegen der Hintergrundfarbe des Scrollpanes
 		scrollPane.setBackground(
-				new Color(GlobalResources.COLOR_CODE_R, GlobalResources.COLOR_CODE_G, GlobalResources.COLOR_CODE_B));
+		    new Color(GlobalResources.COLOR_CODE_R, GlobalResources.COLOR_CODE_G, GlobalResources.COLOR_CODE_B));
+
+		// Festlegen der Position und Größe der verschiedenen Komponenten
 		search.setBounds(10, 70, 175, 30);
 		addPerson.setBounds(600, 66, 115, 40);
 		updatePerson.setBounds(743, 66, 115, 40);
@@ -180,6 +214,8 @@ public class PersonMaintenance extends JFrame implements ActionListener, Documen
 		error.setForeground(Color.red);
 		error.setFont(new Font("Times New Roman", Font.BOLD, 15));
 		close.setBounds(980, 3, 32, 32);
+
+		// Hinzufügen der Komponenten zum ContentPane
 		c.add(list);
 		c.add(search);
 		c.add(searchBox);
@@ -189,11 +225,13 @@ public class PersonMaintenance extends JFrame implements ActionListener, Documen
 		c.add(deletePerson);
 		c.add(updatePerson);
 
+		// Erstellen des Detailpanels für die Anzeige der Personendetails
 		detailsPanel = new JPanel();
 		detailsPanel.setBounds(10, 424, 988, 188);
 		getContentPane().add(detailsPanel);
 		detailsPanel.setLayout(null);
 
+		// Erstellen der Label für die verschiedenen Personendaten
 		lblName = new JLabel("Student Name:");
 		lblName.setFont(new Font("Times New Roman", Font.BOLD, 20));
 		lblName.setBounds(20, 25, 157, 26);
@@ -214,6 +252,7 @@ public class PersonMaintenance extends JFrame implements ActionListener, Documen
 		lblOther.setBounds(514, 72, 191, 26);
 		detailsPanel.add(lblOther);
 
+		// Erstellen der Textfelder für die Eingabe von Personendaten
 		txtName = new JTextField();
 		txtName.setBounds(196, 24, 220, 30);
 		txtName.setFont(new Font("Times New Roman", Font.PLAIN, 15));
@@ -239,6 +278,7 @@ public class PersonMaintenance extends JFrame implements ActionListener, Documen
 		txtOther.setFont(new Font("Times New Roman", Font.PLAIN, 15));
 		detailsPanel.add(txtOther);
 
+		// Erstellen von Fehleranzeigen für die verschiedenen Felder
 		lblNameErr = new JLabel(new ImageIcon(getClass().getResource(GlobalResources.ERROR_ICON)));
 		lblNameErr.setForeground(new Color(192, 192, 192));
 		lblNameErr.setBounds(426, 25, 30, 30);
@@ -257,6 +297,7 @@ public class PersonMaintenance extends JFrame implements ActionListener, Documen
 		lblOtherErr.setVisible(false);
 		detailsPanel.add(lblOtherErr);
 
+		// Erstellen der Speichern- und Abbrechen-Schaltflächen
 		save = new JButton();
 		save.setText("  Save");
 		cancel = new JButton();
@@ -270,28 +311,40 @@ public class PersonMaintenance extends JFrame implements ActionListener, Documen
 		detailsPanel.add(save);
 		detailsPanel.add(cancel);
 
+		// Fehleranzeige ausblenden
 		errorIcon.setVisible(false);
+
+		// Fenstergröße und Layout festlegen
 		this.setSize(1020, 658);
 		TitledBorder tb = new TitledBorder(new EtchedBorder(), "Details");
 		tb.setTitleFont(new Font("Times New Roman", Font.BOLD, 17));
 		detailsPanel.setBorder(tb);
 
+		// Fensterposition in der Mitte des Bildschirms festlegen
 		Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
 		this.setLocation(d.width / 2 - this.getWidth() / 2, d.height / 2 - this.getHeight() / 2);
 		this.setResizable(false);
 
+		// Festlegen des Fenstertitels und des Symbols
 		this.setTitle("Person Maintenance - " + GlobalResources.APPLICATION_NAME);
 		this.setIconImage(new ImageIcon(this.getClass().getResource(GlobalResources.LOGO)).getImage());
+
+		// Hinzufügen der Event-Listener und Standardwerte setzen
 		this.addListeners();
 		this.setDefaults(false);
+
+		// Aktualisieren der Datensatzanzahl
 		try {
-			updateRecordCount();
+		    updateRecordCount();
 		} catch (CustomException ex) {
 		}
-		// this.setModal(true);
+
+		// Das Dialogfenster anzeigen
 		this.setVisible(true);
+
 	}
 // Till Here
+
 	public void addListeners() {
 		addPerson.addActionListener(this);
 		deletePerson.addActionListener(this);

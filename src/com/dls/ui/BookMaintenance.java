@@ -249,7 +249,7 @@ public class BookMaintenance extends JFrame implements ActionListener, DocumentL
 
 
 
-// Till here
+
     @Override 
     public void actionPerformed(ActionEvent ae) {
         // Bestimmt das Event-Objekt, das die Aktion ausgelöst hat
@@ -492,7 +492,7 @@ public class BookMaintenance extends JFrame implements ActionListener, DocumentL
         }
     }
 
-// Till here 
+
  // Die Klasse `BookDetailPanel` erweitert die JPanel-Klasse und implementiert das ActionListener-Interface.
  // Sie repräsentiert ein benutzerdefiniertes Panel für die Eingabe und Anzeige von Buchdetails.
  class BookDetailPanel extends JPanel implements ActionListener {
